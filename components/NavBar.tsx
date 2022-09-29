@@ -9,13 +9,14 @@ const NavBar = () => {
     { title: 'Chat', icon: '/icons/chat.svg' },
   ]
   const [active, setActive] = useState('Home')
+  const [collpase, setCollapse] = useState(false)
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{width: collpase? 75 : 248}}>
       <div className={styles.header}>
-        <img src="/icons/logo.svg" />
+        <img src="/icons/logo.svg" onClick={() => collpase && setCollapse(false)} />
         <span className={styles.brand}>Grade Arc</span>
-        <img src="/icons/close-navbar.svg" className={styles.closeIcon} />
+        <img src="/icons/close-navbar.svg" className={styles.closeIcon} onClick={() => setCollapse(!collpase)} />
       </div>
       <div className={styles.body}>
         {options.map((option, i) => (
@@ -27,14 +28,14 @@ const NavBar = () => {
             onClick={() => setActive(option.title)}
           >
             <img src={option.icon} className={styles.optionIcon} />
-            <span
+            {!collpase && <span
               className={cx(
                 styles.optionTitle,
                 active === option.title && styles.optionTitleActive
               )}
             >
               {option.title}
-            </span>
+            </span>}
           </div>
         ))}
       </div>

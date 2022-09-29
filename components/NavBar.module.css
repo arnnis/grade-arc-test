@@ -21,6 +21,7 @@
 
 .closeIcon {
     margin-left: auto;
+    cursor: pointer;
 }
 
 .body {
